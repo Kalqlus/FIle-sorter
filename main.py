@@ -1,16 +1,38 @@
-# This is a sample Python script.
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# set your own path here!
+dirToSort = "c:\\Users\\Asus\\Desktop\\ajzel_1"
 
+os.chdir(dirToSort)
+currPath = os.getcwd()
+print(f'Current path: {currPath}')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+dirToCreate = ['Images', 'Documents', 'Videos', 'Music', 'Others']
 
+filesToCheck = (
+    ('.jpg', '.png', '.jpeg'),
+    ('.pdf', '.docx', '.txt'),
+    ('.mp4', '.mov', '.avi'),
+    ('.mp3', '.wav')
+)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+for dir in dirToCreate:
+    if not os.path.exists(dir):
+        os.mkdir(dir)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for file in os.listdir():
+    if not os.path.isdir(file):
+        if file.endswith(tuple(filesToCheck[0])):
+                os.rename(file, f'Images/{file}')
+        elif file.endswith(tuple(filesToCheck[1])):
+            os.rename(file, f'Documents/{file}')
+        elif file.endswith(tuple(filesToCheck[2])):
+            os.rename(file, f'Videos/{file}')
+        elif file.endswith(tuple(filesToCheck[3])):
+            os.rename(file, f'Music/{file}')
+        elif file.endswith('.py'):
+            continue
+        else:
+            os.rename(file, f'Others/{file}')
+
+print('Sorting Done!')
