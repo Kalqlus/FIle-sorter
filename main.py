@@ -1,7 +1,8 @@
 import os
 
 # set your own path here!
-dirToSort = "c:\\Users\\Asus\\Desktop\\ajzel_1"
+# example path: "c:\\Users\\Asus\\Desktop\\folder_to_sort"
+dirToSort = "c:\\path here"
 
 os.chdir(dirToSort)
 currPath = os.getcwd()
